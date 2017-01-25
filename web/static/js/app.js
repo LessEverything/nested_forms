@@ -19,3 +19,21 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+  function insertAfter(el, referenceNode) {
+    referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
+
+
+var el = document.getElementById('add_post');
+el.onclick = function(e){
+  e.preventDefault()
+  var el = document.getElementById('add_post');
+  let time = new Date().getTime()
+  let template = el.getAttribute('data-template')
+  var uniq_template = template.replace(/\[0]/g, `[${time}]`)
+  uniq_template = uniq_template.replace(/_0_/g, `_${time}_`)
+  this.insertAdjacentHTML('afterend', uniq_template)
+
+  };
+

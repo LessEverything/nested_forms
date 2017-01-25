@@ -1,0 +1,9 @@
+<%= inputs_for @f, :posts, fn p -> %>
+  <div id="new-post">
+    <div class="form-group">
+      <%= label p, :body, class: "control-label" %>
+      <%= text_input p, :body, class: "form-control" %>
+      <%= error_tag p, :body %>
+    </div>
+  </div>
+<% end %>

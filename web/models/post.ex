@@ -3,6 +3,7 @@ defmodule NestedForms.Post do
 
   schema "posts" do
     field :body, :string
+    field :delete, :boolean, virtual: true
     belongs_to :user, NestedForms.User
 
     timestamps()
@@ -13,7 +14,16 @@ defmodule NestedForms.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:body])
+    |> cast(params, [:body, :delete])
+    |> set_delete_action
     |> validate_required([:body])
+  end
+
+  defp set_delete_action(changeset) do
+    if get_change(changeset, :delete) do
+      %{changeset | action: :delete}
+    else
+      changeset
+    end
   end
 end

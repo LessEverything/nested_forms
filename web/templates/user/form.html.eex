@@ -17,7 +17,14 @@
       <%= text_input p, :body, class: "form-control" %>
       <%= error_tag p, :body %>
     </div>
+
+    <div class="form-group">
+      <%= label p, :delete, "Delete?", class: "control-label" %>
+      <%= checkbox p, :delete %>
+    </div>
   <% end %>
+
+  <%= link_to_post_fields %>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
